@@ -38,57 +38,15 @@ Method: POST![Screenshot (1918)](https://github.com/user-attachments/assets/59d9
 
 Request Parameters:
 file (MultipartFile): DOCX file to be uploaded.
+
+
 Response:
 A CombinedData object containing:
 List of extracted QuestionData
 List of QuestionHtmlData (raw HTML)
 List of Warning messages
-Example Request
-bash
-Copy code
-curl -X POST -F "file=@sample.docx" http://localhost:8080/convert-doc-to-html
-Sample Response (JSON)
-json
-Copy code
-{
-  "questionDataList": [
-    {
-      "questionNumber": 1,
-      "optionCount": 4,
-      "hasAnswer": true,
-      "hasExplanation": true
-    }
-  ],
-  "questionHtmlDataList": [
-    {
-      "questionHtml": "What is the capital of France?",
-      "optionsHtml": ["(a.) Paris", "(b.) Berlin", "(c.) Madrid", "(d.) Rome"],
-      "answerHtml": "Paris",
-      "explanationHtml": "Paris is the capital city of France."
-    }
-  ],
-  "warnings": [
-    {
-      "questionNumber": 2,
-      "warningMessage": "Unexpected option format in multi-line question"
-    }
-  ]
-}
-Project Structure
-plaintext
-Copy code
-src/
-├── main/
-│   ├── java/com/example/demo/
-│   │   ├── controller/DocxConverter.java   # REST Controller
-│   │   ├── dto/                            # Data Transfer Objects (DTOs)
-│   │   │   ├── CombinedData.java
-│   │   │   ├── QuestionData.java
-│   │   │   ├── QuestionHtmlData.java
-│   │   │   └── Warning.java
-│   │   └── service/DocxService.java        # Service for conversion and extraction
-│   └── resources/
-│       └── application.properties          # Spring Boot configuration
+
+
 DTOs
 CombinedData: Combines questions, HTML, and warnings.
 QuestionData: Stores metadata for each question.
